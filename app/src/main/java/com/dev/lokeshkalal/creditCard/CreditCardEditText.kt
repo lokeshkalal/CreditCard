@@ -13,6 +13,8 @@ import com.dev.lokeshkalal.creditCard.identifier.service.CardIdentifierService
 import com.dev.lokeshkalal.creditCard.validator.service.CardValidatorService
 import java.lang.RuntimeException
 import android.graphics.Rect
+import android.text.Spannable
+import android.text.style.BackgroundColorSpan
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -79,13 +81,13 @@ class CreditCardEditText @JvmOverloads constructor(
             identifyAndValidateCard(unformat(s))
 
 
-           /* s.setSpan(
+            s.setSpan(
                 BackgroundColorSpan(resources.getColor(R.color.grey_900)),
                 0,
                 s.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
-*/
+
 
         }
 

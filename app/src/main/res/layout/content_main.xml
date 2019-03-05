@@ -34,6 +34,7 @@
             app:layout_constraintVertical_bias="0.45"
             android:textSize="20sp"
             android:letterSpacing=".2"
+            android:typeface="monospace"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"/>
 
@@ -49,6 +50,7 @@
             android:inputType="number"
             android:textSize="20sp"
             android:textColor="@android:color/white"
+            android:typeface="monospace"
             app:layout_constraintEnd_toEndOf="@id/card_number_background"
             app:layout_constraintStart_toStartOf="@id/card_number_background"/>
 
