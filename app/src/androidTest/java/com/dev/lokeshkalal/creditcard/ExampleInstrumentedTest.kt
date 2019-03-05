@@ -1,4 +1,4 @@
-package com.dev.lokeshkalal.creditcard1
+package com.dev.lokeshkalal.creditcard
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
