@@ -7,7 +7,7 @@ class DinerCardIdentifier : Identifier {
     internal var pattern: String
 
     init {
-        pattern = "^3(?:0[0-5]|[68][0-9])[0-9]{0,11}$"
+        pattern = "^36[0-9]{0,12}$"
     }
 
     override fun validateCard(cardNumner: String): CardIdentifierResult {

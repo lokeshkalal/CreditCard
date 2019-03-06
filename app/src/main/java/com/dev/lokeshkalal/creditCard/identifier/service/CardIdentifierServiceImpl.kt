@@ -1,7 +1,5 @@
 package com.dev.lokeshkalal.creditCard.identifier.service
 
-import com.dev.lokeshkalal.creditCard.common.Constants
-import com.dev.lokeshkalal.creditCard.addCreditCard.CreditCardType
 import com.dev.lokeshkalal.creditCard.identifier.*
 
 import javax.inject.Inject

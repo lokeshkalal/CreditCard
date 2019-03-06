@@ -107,15 +107,8 @@ class AddCreditCardEditText @JvmOverloads constructor(
 
     fun unmask(text: Editable?): String {
         if (text.isNullOrEmpty()) return ""
-        val unformatted = StringBuilder()
-        val textLength = text.length
-        mask.forEachIndexed { index, m ->
-            if (index >= textLength) return@forEachIndexed
-            if (isPlaceHolder(m)) {
-                unformatted.append(text[index])
-            }
-        }
-        return unformatted.toString()
+        return text.toString().replace(" ", "")
+
     }
 
 
