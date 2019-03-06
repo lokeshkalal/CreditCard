@@ -5,8 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_50"
-        tools:context="com.dev.lokeshkalal.creditCard.MainActivity">
+       android:id="@+id/container"
+        tools:context="com.dev.lokeshkalal.creditCard.addCreditCard.AddCreditCardActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
@@ -21,14 +21,5 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
-    <include
-            android:layout_width="350dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="200dp"
-            android:layout_gravity="center_horizontal"
-            layout="@layout/content_main"/>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

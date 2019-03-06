@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/grey_50"
+             tools:context="com.dev.lokeshkalal.creditCard.addCreditCard.AddCreditCardFragment">
+
+    <include
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center_horizontal"
+            layout="@layout/add_card_layout"/>
+
+</FrameLayout>
