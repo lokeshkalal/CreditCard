@@ -5,8 +5,8 @@ import com.dev.lokeshkalal.creditCard.addCreditCard.CreditCardType
 import java.util.concurrent.ArrayBlockingQueue
 
 class JCBCardIdentifier : AbstractIdentifier(PATTERN) {
-    override fun getResult(isIdentified: Boolean): CardIdentifierResult {
-        return if (isIdentified) {
+    override fun validateCard(cardNumber: String): CardIdentifierResult {
+        return if (cardNumber.matches(pattern.toRegex())) {
             CardIdentifierResult(CreditCardType.JCB, MAX_NUMBER, MIN_NUMBER)
         } else {
             CardIdentifierResult.InvalidCard()

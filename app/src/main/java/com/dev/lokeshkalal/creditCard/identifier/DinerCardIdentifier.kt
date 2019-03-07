@@ -5,8 +5,8 @@ import com.dev.lokeshkalal.creditCard.addCreditCard.CreditCardType
 
 class DinerCardIdentifier : AbstractIdentifier(PATTERN) {
 
-    override fun getResult(isIdentified: Boolean): CardIdentifierResult {
-        return if (isIdentified) {
+    override fun validateCard(cardNumber: String): CardIdentifierResult {
+        return if (cardNumber.matches(pattern.toRegex())) {
             CardIdentifierResult(
                 CreditCardType.DINER,
                 MAX_NUMBER,

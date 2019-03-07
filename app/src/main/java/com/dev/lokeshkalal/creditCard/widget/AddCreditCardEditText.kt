@@ -18,6 +18,8 @@ import android.text.style.BackgroundColorSpan
 import com.dev.lokeshkalal.creditCard.R
 import com.dev.lokeshkalal.creditCard.addCreditCard.*
 import com.dev.lokeshkalal.creditCard.common.Constants
+import com.dev.lokeshkalal.creditCard.mask.MaskFormatter
+import com.dev.lokeshkalal.creditCard.mask.MaskFormatterImpl
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -34,8 +36,15 @@ class AddCreditCardEditText @JvmOverloads constructor(
     private var cardValidatorService: CardValidatorService? = null
     private var selfChange = false
     private var currentMaxLength = 0
-    private var mask = "XXXX XXXX XXXX XXXX"
+    private var mask: String
     private var cardNumberBackground: AppCompatTextView? = null
+    private val maskFormatter: MaskFormatter
+
+
+    init {
+        maskFormatter = MaskFormatterImpl(getMask(Constants.MAX_DEFAULT_CARD_NUMBER), "X")
+        mask = getMask(Constants.MAX_DEFAULT_CARD_NUMBER)
+    }
 
     private val internalTextWatcher = object : TextWatcher {
 
@@ -53,7 +62,7 @@ class AddCreditCardEditText @JvmOverloads constructor(
             selfChange = true
             applyMask(text)
             selfChange = false
-            identifyAndValidateCard(unmask(text))
+            identifyAndValidateCard(maskFormatter.unformat(text.toString()))
             setBackgroundMask(text)
         }
 
@@ -104,44 +113,15 @@ class AddCreditCardEditText @JvmOverloads constructor(
         )
     }
 
-
-    fun unmask(text: Editable?): String {
-        if (text.isNullOrEmpty()) return ""
-        return text.toString().replace(" ", "")
-
-    }
-
-
     private fun applyMask(text: Editable) {
         text.apply {
             val editableFilters = filters
             filters = emptyArray()
-            val formatted = StringBuilder()
-            val list = toMutableList()
-            mask.forEach { m ->
-                if (list.isNullOrEmpty()) return@forEach
-                var c = list[0]
-                if (isPlaceHolder(m)) {
-                    if (!c.isDigit()) {
-                        val iterator = list.iterator()
-                        while (iterator.hasNext()) {
-                            c = iterator.next()
-                            if (c.isDigit()) break
-                            iterator.remove()
-                        }
-                    }
-                    if (list.isNullOrEmpty()) return@forEach
-                    formatted.append(c)
-                    list.removeAt(0)
-                } else {
-                    formatted.append(m)
-                    if (m == c) {
-                        list.removeAt(0)
-                    }
-                }
-            }
+            val formatted = maskFormatter.format(text.toString())
+
             val previousLength = length
             val currentLength = formatted.length
+
             replace(0, previousLength, formatted, 0, currentLength)
             // set correct cursor position when editing
             if (currentLength < previousLength) {
@@ -160,7 +140,7 @@ class AddCreditCardEditText @JvmOverloads constructor(
         val maskLength = mask.length
         var position = start
         for (i in start until maskLength) {
-            if (isPlaceHolder(mask[i])) {
+            if (maskFormatter.isPlaceHolder(mask[i])) {
                 break
             }
             position++
@@ -169,9 +149,6 @@ class AddCreditCardEditText @JvmOverloads constructor(
         return if (position < textLength) position else textLength
     }
 
-    fun isPlaceHolder(c: Char): Boolean {
-        return c == 'X'
-    }
 
     init {
         setMaskAndLength(Constants.MAX_DEFAULT_CARD_NUMBER)
@@ -190,6 +167,7 @@ class AddCreditCardEditText @JvmOverloads constructor(
     private fun setMaskAndLength(maxNumberAllowed: Int) {
         if (currentMaxLength != maxNumberAllowed) {
             mask = getMask(maxNumberAllowed)
+            maskFormatter.setMask(mask,"X")
             cardNumberBackground?.setText(mask)
             setMaxLenth(mask.length)
 

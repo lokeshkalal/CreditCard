@@ -1,6 +1,5 @@
 package com.dev.lokeshkalal.creditCard.validator.luhnsValidator
 
-import android.util.Log
 
 
 class LuhnsValidator : Validator {
