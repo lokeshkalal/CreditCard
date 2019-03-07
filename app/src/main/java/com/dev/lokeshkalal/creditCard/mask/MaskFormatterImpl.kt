@@ -1,6 +1,5 @@
 package com.dev.lokeshkalal.creditCard.mask
 
-import android.text.Editable
 
 class MaskFormatterImpl : MaskFormatter {
 
